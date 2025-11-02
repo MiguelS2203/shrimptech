@@ -1,0 +1,29 @@
+.site-header {
+  background-color: #0097a7;
+  color: #fff;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 25px;
+}
+
+.brand h3 {
+  margin: 0;
+  font-size: 1.3rem;
+}
+
+.header-nav a {
+  color: #fff;
+  text-decoration: none;
+  margin-left: 15px;
+  padding: 8px 12px;
+  border-radius: 5px;
+  font-size: 0.95rem;
+}
+
+.header-nav a:hover {
+  background-color: #00bcd4;
+  color: #333333;
+  transition: 0.2s;
+  cursor: pointer;
+}
