@@ -7,15 +7,16 @@ import { IUser } from '../models/IUser';
 })
 export class Authorization {
   private readonly users: IUser[] = [
-    { username: 'edu', password: '1234', name: 'Edú Sabando' },
-    { username: 'heidy', password: '1234', name: 'Heidy Mendoza' },
-    { username: 'emily', password: '1234', name: 'Emily Obando' },
-    { username: 'johan', password: '1234', name: 'Johan Tigrero' },
-    { username: 'miguel', password: '1234', name: 'Miguel Salazar' },
+    { username: 'johan', password: '1234', name: 'Johan Tigrero', role: 'Administrador' },
+    { username: 'heidy', password: '1234', name: 'Heidy Mendoza', role: 'Operario de Producción' },
+    { username: 'edu', password: '1234', name: 'Edú Sabando', role: 'Técnico de Monitoreo' },
+    { username: 'miguel', password: '1234', name: 'Miguel Salazar', role: 'Vendedor' },
+    { username: 'emily', password: '1234', name: 'Emily Obando', role: 'Bodeguero' },
   ];
 
   readonly loggedIn$ = new BehaviorSubject<boolean>(false);
   readonly currentUser$ = new BehaviorSubject<string | null>(null);
+  readonly currentUserRole$ = new BehaviorSubject<string | null>(null);
 
   login(user: string, pass: string): boolean {
     const userFound = this.users.find((u) => u.username === user && u.password === pass);
@@ -23,10 +24,12 @@ export class Authorization {
     if (userFound) {
       this.loggedIn$.next(true);
       this.currentUser$.next(userFound.name);
+      this.currentUserRole$.next(userFound.role);
       return true;
     } else {
       this.loggedIn$.next(false);
       this.currentUser$.next(null);
+      this.currentUserRole$.next(null);
       return false;
     }
   }
@@ -34,5 +37,6 @@ export class Authorization {
   logout(): void {
     this.loggedIn$.next(false);
     this.currentUser$.next(null);
+    this.currentUserRole$.next(null);
   }
 }

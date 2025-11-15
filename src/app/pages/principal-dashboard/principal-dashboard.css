@@ -1,0 +1,103 @@
+.dashboard-container {
+  min-height: 100vh;
+  max-width: 800px;
+  margin: 0 auto;
+  padding: 40px 20px;
+  text-align: center;
+}
+
+.user-welcome h1 {
+  color: #0097a7;
+  margin-bottom: 5px;
+  font-size: 2.2rem;
+}
+
+.user-role {
+  color: #666;
+  font-size: 1.1rem;
+  margin-bottom: 40px;
+}
+
+.main-module {
+  margin: 50px 0;
+}
+
+.module-card {
+  background: white;
+  border-radius: 15px;
+  padding: 50px 30px;
+  margin: 0 auto;
+  max-width: 400px;
+  box-shadow: 0 8px 25px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.3s ease;
+  border: 3px solid transparent;
+}
+
+.module-card:hover {
+  transform: translateY(-5px);
+  box-shadow: 0 15px 35px rgba(0, 0, 0, 0.15);
+}
+
+.module-card {
+  background: #0097a7;
+  color: white;
+}
+
+.module-icon {
+  font-size: 4rem;
+  margin-bottom: 20px;
+}
+
+.module-card h2 {
+  margin: 0 0 15px 0;
+  font-size: 1.8rem;
+}
+
+.module-card p {
+  margin: 0;
+  opacity: 0.9;
+  font-size: 1.1rem;
+}
+
+/* ACCESOS RÁPIDOS (SOLO ADMIN) */
+.quick-access {
+  margin-top: 60px;
+  padding-top: 40px;
+  border-top: 2px solid #eee;
+}
+
+.quick-access h3 {
+  color: #333;
+  margin-bottom: 25px;
+}
+
+.quick-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(120px, 1fr));
+  gap: 15px;
+  max-width: 500px;
+  margin: 0 auto;
+}
+
+.quick-card {
+  background: white;
+  padding: 20px 15px;
+  border-radius: 10px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+  cursor: pointer;
+  transition: all 0.2s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+}
+
+.quick-card:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 6px 15px rgba(0, 0, 0, 0.15);
+}
+
+.quick-icon {
+  font-size: 2rem;
+}

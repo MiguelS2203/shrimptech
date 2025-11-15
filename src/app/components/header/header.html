@@ -11,6 +11,11 @@
 
   <nav class="header-nav">
     <a routerLink="/">Inicio</a>
+
+    @if(loggedInHeader){
+    <a routerLink="/principal-dashboard">Dashboard</a>
+    }
+
     <a routerLink="/about">Acerca de</a>
 
     @if(!loggedInHeader){

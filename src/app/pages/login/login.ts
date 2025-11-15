@@ -27,7 +27,7 @@ export class Login {
       this.messageClass = 'success';
 
       setTimeout(() => {
-        this.router.navigate(['/']);
+        this.router.navigate(['/principal-dashboard']);
       }, 1000);
     } else {
       this.message = 'Error en credenciales';
