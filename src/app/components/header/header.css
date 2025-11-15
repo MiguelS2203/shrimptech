@@ -27,3 +27,22 @@
   transition: 0.2s;
   cursor: pointer;
 }
+
+.user-center {
+  position: absolute;
+  left: 50%;
+  transform: translateX(-50%);
+}
+
+.user-name {
+  font-weight: 500;
+}
+
+.logout-btn {
+  background-color: rgba(244, 67, 54, 0.8) !important;
+  color: #fff !important;
+}
+
+.logout-btn:hover {
+  color: #333333 !important;
+}

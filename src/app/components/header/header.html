@@ -3,6 +3,12 @@
     <h3>ShrimpTech</h3>
   </div>
 
+  @if(loggedInHeader){
+  <div class="user-center">
+    <span class="user-name">{{ authorize.currentUser$ | async }}</span>
+  </div>
+  }
+
   <nav class="header-nav">
     <a routerLink="/">Inicio</a>
     <a routerLink="/about">Acerca de</a>
@@ -10,7 +16,7 @@
     @if(!loggedInHeader){
     <a routerLink="/login">Iniciar sesión</a>
     } @if(loggedInHeader){
-    <a (click)="logout()">Cerrar sesión</a>
+    <a class="logout-btn" (click)="logout()">Cerrar sesión</a>
     }
   </nav>
 </header>

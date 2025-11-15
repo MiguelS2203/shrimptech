@@ -16,10 +16,23 @@ export class Login {
   readonly router = inject(Router);
   readonly authorize = inject(Authorization);
 
+  message: string = '';
+  messageClass: string = '';
+
   validateAccess() {
-    alert('Se procederá a validar las credenciales de acceso');
-    this.authorize.loggedIn$.next(true);
-    this.router.navigate(['/']);
+    const access = this.authorize.login(this.user, this.password);
+
+    if (access) {
+      this.message = 'Acceso concedido';
+      this.messageClass = 'success';
+
+      setTimeout(() => {
+        this.router.navigate(['/']);
+      }, 1000);
+    } else {
+      this.message = 'Error en credenciales';
+      this.messageClass = 'error';
+    }
 
     console.log(`Usuario: ${this.user}`);
     console.log(`Clave: ${this.password}`);
