@@ -9,7 +9,6 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatIconModule } from '@angular/material/icon';
 import { MatTableModule } from '@angular/material/table';
 import { MatToolbarModule } from '@angular/material/toolbar';
-//DATEPICKER
 import { MatDatepickerModule } from '@angular/material/datepicker';
 import { provideNativeDateAdapter } from '@angular/material/core';
 //DIALOGS
@@ -41,11 +40,11 @@ export class Movements {
 
   //MOVIMIENTOS
   movimientos = [
-  { id: 1, fecha: "2025-02-01", tipo: "Ingreso", producto: "Producto 1", cantidad: 500, responsable: "Admin" },
-  { id: 2, fecha: "2025-02-02", tipo: "Salida",  producto: "Producto 2", cantidad: 200, responsable: "Admin" },
-  { id: 3, fecha: "2025-02-02", tipo: "Ingreso", producto: "Producto 1", cantidad: 300, responsable: "Admin" },
-  { id: 4, fecha: "2025-02-03", tipo: "Salida",  producto: "Producto 1", cantidad: 100, responsable: "Admin" }
-];
+    { id: 1, fecha: "2025-02-01", tipo: "Entrada", producto: "Producto 1", cantidad: 500, responsable: "Admin" },
+    { id: 2, fecha: "2025-03-02", tipo: "Salida",  producto: "Producto 2", cantidad: 200, responsable: "Admin" },
+    { id: 3, fecha: "2025-04-02", tipo: "Entrada", producto: "Producto 4", cantidad: 300, responsable: "Admin" },
+    { id: 4, fecha: "2025-05-03", tipo: "Ajuste",  producto: "Producto 3", cantidad: 100, responsable: "Admin" }
+  ];
 
   //FILTROS
   filtroTipo = "";
@@ -63,34 +62,39 @@ export class Movements {
   movimientosFiltrados = [...this.movimientos];
 
   displayedColumns: string[] = [
-  'id',
-  'fecha',
-  'producto',
-  'tipo',
-  'cantidad',
-  'responsable',
-  'acciones'
-];
+    'id',
+    'fecha',
+    'producto',
+    'tipo',
+    'cantidad',
+    'responsable',
+    'acciones'
+  ];
 
   constructor(private dialog: MatDialog) { }
 
+  //CONVERTIR STRING YYYY-MM-DD
+  convertirStringAFechaLocal(fechaStr: string): Date {
+    const [anio, mes, dia] = fechaStr.split('-').map(Number);
+    return new Date(anio, mes - 1, dia);  
+  }
+
   //FILTRAR
   filtrar() {
-  this.movimientosFiltrados = this.movimientos.filter(m => {
-    
-    const cumpleTipo = this.filtroTipo ? m.tipo === this.filtroTipo : true;
-    const cumpleProducto = this.filtroProducto ? m.producto === this.filtroProducto : true;
+    this.movimientosFiltrados = this.movimientos.filter(m => {
+      const cumpleTipo = this.filtroTipo ? m.tipo === this.filtroTipo : true;
+      const cumpleProducto = this.filtroProducto ? m.producto === this.filtroProducto : true;
 
-    const fechaMov = new Date(m.fecha);
-    const desde = this.filtroDesde ? new Date(this.filtroDesde) : null;
-    const hasta = this.filtroHasta ? new Date(this.filtroHasta) : null;
+      const fechaMov = new Date(m.fecha);
+      const desde = this.filtroDesde ? new Date(this.filtroDesde) : null;
+      const hasta = this.filtroHasta ? new Date(this.filtroHasta) : null;
 
-    const cumpleDesde = desde ? fechaMov >= desde : true;
-    const cumpleHasta = hasta ? fechaMov <= hasta : true;
+      const cumpleDesde = desde ? fechaMov >= desde : true;
+      const cumpleHasta = hasta ? fechaMov <= hasta : true;
 
-    return cumpleTipo && cumpleProducto && cumpleDesde && cumpleHasta;
-  });
-}
+      return cumpleTipo && cumpleProducto && cumpleDesde && cumpleHasta;
+    });
+  }
 
   //AGREGAR
   openRegistrarDialog() {
@@ -103,6 +107,10 @@ export class Movements {
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
+        //CONVERTIR A STRING YYYY-MM-DD
+        if (result.fecha instanceof Date) {
+          result.fecha = this.formatearFecha(result.fecha);
+        }
         result.id = this.movimientos.length + 1;
 
         this.movimientos.push(result);
@@ -118,12 +126,19 @@ export class Movements {
       data: {
         tipos: this.tipos,
         productos: this.productos,
-        movimiento: { ...movimiento }
+        movimiento: {
+          ...movimiento,
+          fecha: this.convertirStringAFechaLocal(movimiento.fecha)
+        }
       }
     });
 
     dialogRef.afterClosed().subscribe((result: any) => {
       if (result) {
+        if (result.fecha instanceof Date) {
+          //FORMATEAR FECHA
+          result.fecha = this.formatearFecha(result.fecha);
+        }
         const index = this.movimientos.findIndex(m => m.id === result.id);
         if (index >= 0) {
           this.movimientos[index] = result;
@@ -146,6 +161,14 @@ export class Movements {
     this.movimientos = this.movimientos.filter(m => m.id !== id);
     this.actualizarListas();
     this.filtrar();
+  }
+
+  //FORMATEAR FECHA A YYYY-MM-DD
+  formatearFecha(fecha: Date): string {
+    const y = fecha.getFullYear();
+    const m = String(fecha.getMonth() + 1).padStart(2, '0');
+    const d = String(fecha.getDate()).padStart(2, '0');
+    return `${y}-${m}-${d}`;
   }
 
   //ACTUALIZAR LISTAS
