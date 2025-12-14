@@ -8,11 +8,12 @@ img {
   width: 100%;
 }
 
-html, body {
+html,
+body {
   height: 100%;
   margin: 0;
-  font-family: 'Helvetica Neue', sans-serif; 
-  background-color: #ffffff;
+  font-family: 'Helvetica Neue', sans-serif;
+  background-color: #ffffff !important;
 }
 
 .app-container {
@@ -25,7 +26,12 @@ main {
   flex: 1;
 }
 
-h1, h2, h3, h4, h5, h6 {
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
   font-weight: bold;
 }
 
@@ -37,7 +43,7 @@ h1, h2, h3, h4, h5, h6 {
 .mat-calendar-header,
 .mat-calendar-body-cell-content {
   font-family: 'Helvetica Neue', sans-serif !important;
-  color: #000 !important;          
+  color: #000 !important;
 }
 
 .mat-datepicker-content {
@@ -55,4 +61,3 @@ h1, h2, h3, h4, h5, h6 {
 .mat-calendar-header {
   background-color: #ffffff !important;
 }
-

@@ -1,52 +1,95 @@
+/* Fuente general */
+* {
+  font-family: "Helvetica Neue", sans-serif !important;
+}
+
+/* Tarjeta */
 .card {
   background: white;
   padding: 25px;
   border-radius: 14px;
   box-shadow: 0 5px 18px rgba(0,0,0,0.08);
   border: 1px solid #e6eefc;
-  max-width: 500px;
+  max-width: 480px;
+  margin: auto;
 }
 
+/* Color principal */
+:root {
+  --primary-color: #0097a7;
+}
+
+/* Título */
 h1 {
-  font-size: 24px;
-  color: #004a8f;
+  font-size: 22px;
+  color: var(--primary-color);
   margin-bottom: 20px;
+  font-weight: normal; /* sin negrita */
 }
 
+/* Labels */
 label {
-  font-weight: 600;
-  margin-top: 10px;
+  font-size: 14px;
+  color: var(--primary-color);
+  margin-bottom: 5px;
   display: block;
-  color: #333;
+  font-weight: normal; /* sin negrita */
 }
 
-input, select {
+/* Inputs y selects */
+input,
+select,
+textarea {
   width: 100%;
   padding: 10px;
   border-radius: 8px;
-  border: 1px solid #d0ddf7;
-  margin-top: 5px;
-  margin-bottom: 12px;
+  border: 2px solid var(--primary-color);
+  margin-bottom: 15px;
+  font-size: 15px;
+  background: white;
 }
 
-input:focus, select:focus {
+/* Efecto al hacer foco */
+input:focus,
+select:focus,
+textarea:focus {
   outline: none;
-  border-color: #0077e6;
-  box-shadow: 0 0 4px rgba(0, 119, 230, 0.4);
+  box-shadow: 0 0 4px var(--primary-color);
 }
 
+/* CONTENEDOR DE BOTONES */
+.btns {
+  display: flex;
+  justify-content: space-between;
+  gap: 10px;
+}
+
+/* Botón guardar */
 .btn {
-  width: 100%;
-  background: #0077e6;
+  flex: 1;
+  background: var(--primary-color);
   color: white;
   border: none;
   padding: 12px;
-  border-radius: 10px;
+  border-radius: 8px;
   cursor: pointer;
   font-size: 16px;
-  margin-top: 10px;
 }
 
-.btn:hover {
-  background: #005bb8;
+/* Botón cancelar */
+.btn-cancelar {
+  flex: 1;
+  background: white;
+  color: var(--primary-color);
+  border: 2px solid var(--primary-color);
+  padding: 12px;
+  border-radius: 8px;
+  cursor: pointer;
+  font-size: 16px;
+}
+
+/* Hover */
+.btn:hover,
+.btn-cancelar:hover {
+  opacity: 0.85;
 }

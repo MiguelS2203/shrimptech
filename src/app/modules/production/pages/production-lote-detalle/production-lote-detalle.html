@@ -1,0 +1,54 @@
+<div class="detalle-dashboard">
+
+  <!-- BANNER DEL TÍTULO -->
+  <div class="titulo-banner-detalle">
+    <span class="icono-titulo">📝</span>
+    <h2>Detalle de Lotes</h2>
+  </div>
+
+  <!-- BOTÓN VOLVER -->
+  <div class="volver-container">
+    <a routerLink="/production/lotes" class="volver-btn">← Volver a Lotes</a>
+  </div>
+
+  <!-- TARJETAS DE LOTES -->
+  <div *ngIf="lotes.length > 0; else sinLotes" class="lotes-cards-container">
+    <div class="card-lote" *ngFor="let lote of lotes">
+      <h2>{{ lote.lote }}</h2>
+      <div class="subtitle">Especie: {{ lote.especie }} | Estanque: {{ lote.estanque }}</div>
+      <p>Cantidad inicial: {{ lote.cantidad }}</p>
+      <p>Densidad Inicial: {{ lote.densidadInicial ?? 'N/A' }} / m²</p>
+      <p>Supervivencia: {{ lote.supervivencia ?? 'N/A' }}%</p>
+      <p>Rendimiento estimado: {{ lote.rendimiento ?? 'N/A' }} Kg</p>
+
+      <!-- HISTORIAL -->
+      <!-- HISTORIAL (SOLO SI EXISTE) -->
+<div *ngIf="lote.historial && lote.historial.length > 0">
+
+  <h3>📜 Historial</h3>
+
+  <div class="historial-lista">
+    <div class="historial-item" *ngFor="let h of lote.historial">
+      <div class="historial-fecha">{{ h.fecha | date:'short' }}</div>
+      <div class="historial-accion">{{ h.accion }}</div>
+      <div class="historial-detalle">{{ h.detalle }}</div>
+    </div>
+  </div>
+  <ng-template #sinHistorial>
+  <p class="sin-datos">No hay historial registrado</p>
+</ng-template>
+
+</div>
+
+      <!-- BOTÓN EXPORTAR PDF -->
+       <button (click)="exportarDetallePDF(lote)" class="btn-exportar">
+  Exportar PDF
+</button>
+    </div>
+  </div>
+
+  <ng-template #sinLotes>
+    <p class="sin-datos">No hay lotes registrados</p>
+  </ng-template>
+
+</div>

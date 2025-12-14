@@ -1,0 +1,75 @@
+<div class="card" [class.crear]="isCreateMode">
+
+  <h1>
+    {{ isViewMode ? 'Ver Evento' : (isCreateMode ? 'Nuevo Evento' : 'Editar Evento') }}
+  </h1>
+
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+
+    <div class="form-field field-outlined">
+      <label>Fecha del Evento</label>
+      <input type="date" formControlName="fecha" [readonly]="isViewMode">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Hora</label>
+      <input type="time" formControlName="hora" [readonly]="isViewMode">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Tipo de Evento</label>
+      <select formControlName="tipo" [disabled]="isViewMode">
+        <option value="">Seleccionar tipo</option>
+        <option>Alimentación</option>
+        <option>Muestreo</option>
+        <option>Fertilización</option>
+        <option>Limpieza</option>
+        <option>Medicamento</option>
+      </select>
+    </div>
+
+    <!-- ✅ NUEVO BLOQUE DE LOTE -->
+    <div class="form-field field-outlined">
+      <label>Lote Asociado</label>
+
+      <!-- Select cuando se crea/edita -->
+      <select *ngIf="!isViewMode" formControlName="id_lote">
+        <option value="">-- Seleccionar lote --</option>
+        <option *ngFor="let l of lotes" [value]="l.id">
+          {{ l.lote }} ({{ l.estanque }})
+        </option>
+      </select>
+
+      <!-- Solo lectura cuando es vista -->
+      <input *ngIf="isViewMode" type="text" formControlName="lote" readonly>
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Responsable</label>
+      <input type="text" formControlName="responsable" [readonly]="isViewMode">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Estado</label>
+      <select formControlName="estado" [disabled]="isViewMode">
+        <option>Activo</option>
+        <option>Programado</option>
+        <option>Cerrado</option>
+        <option>Incidencia</option>
+      </select>
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Descripción</label>
+      <textarea rows="2" formControlName="descripcion" [readonly]="isViewMode"></textarea>
+    </div>
+
+    <div class="buttons">
+      <button type="button" class="btn-cancel" (click)="cancelar()">
+        {{ isViewMode ? 'Cerrar' : 'Cancelar' }}
+      </button>
+      <button *ngIf="!isViewMode" type="submit" class="btn-save">Guardar</button>
+    </div>
+
+  </form>
+</div>

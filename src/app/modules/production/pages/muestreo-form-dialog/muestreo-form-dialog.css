@@ -1,0 +1,107 @@
+* { font-family: "Helvetica Neue", sans-serif; }
+
+.material-icons { font-family: 'Material Icons' !important; }
+
+/* CARD GENERAL */
+.card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #d7e6eb;
+  width: 100%;
+  max-width: 500px;
+  max-height: 80vh;
+  overflow-y: auto;
+  box-sizing: border-box;
+}
+
+/* TÍTULO */
+h1 {
+  font-size: 26px;
+  margin: 0 0 20px 0;
+  color: #0097a7;
+  font-weight: 600;
+  text-align: center;
+}
+
+/* CONTENEDOR DE CAMPOS */
+.form-field { position: relative; margin-bottom: 18px; }
+
+/* LABEL FLOTANTE */
+.field-outlined label {
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  background: #ffffff;
+  padding: 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0097a7;
+  z-index: 2;
+}
+
+/* INPUTS & SELECTS */
+.field-outlined input,
+.field-outlined select,
+.field-outlined textarea {
+  width: 100%;
+  padding: 12px;
+  padding-top: 18px;
+  border-radius: 10px;
+  border: 2px solid #0097a7;
+  background: #ffffff;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+/* FOCUS */
+.field-outlined input:focus,
+.field-outlined select:focus,
+.field-outlined textarea:focus {
+  border-color: #007e8a;
+}
+
+/* TEXTAREA */
+textarea { resize: vertical; min-height: 60px; }
+
+/* BOTONES */
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 14px;
+  margin-top: 10px;
+}
+
+.btn-cancel {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+.btn-cancel:hover { background: #5a6268; }
+
+.btn-save {
+  background: #0097a7;
+  color: white;
+  border: none;
+  padding: 10px 24px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+.btn-save:hover { background: #007c8a; }
+
+/* Control del dialog (usa la misma clase panelClass 'dialog-evento') */
+:host ::ng-deep .dialog-evento .mdc-dialog__surface {
+  width: 500px !important;
+  max-width: 500px !important;
+  border-radius: 20px !important;
+  overflow: hidden !important;
+}
+:host ::ng-deep .dialog-evento { overflow-y: auto !important; }

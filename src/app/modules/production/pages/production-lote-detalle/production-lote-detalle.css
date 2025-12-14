@@ -1,0 +1,148 @@
+/* CONTENEDOR GENERAL */
+.detalle-dashboard {
+  padding: 25px 15px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  min-height: 100vh;
+  background: #f7fdfe;
+  font-family: "Helvetica Neue", sans-serif;
+}
+
+/* BANNER DEL TÍTULO */
+.titulo-banner-detalle {
+  width: 100%;
+  max-width: 1100px; /* reducido ligeramente */
+  background: linear-gradient(135deg, #00bcd4, #0097a7);
+  color: white;
+  padding: 24px 20px;
+  border-radius: 18px;
+  text-align: center;
+  box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 12px;
+  margin-bottom: 15px;
+}
+
+.titulo-banner-detalle h2 {
+  font-size: 26px;
+  font-weight: 500;
+  margin: 0;
+}
+
+.icono-titulo {
+  font-size: 28px;
+}
+
+/* BOTÓN VOLVER */
+.volver-container {
+  width: 100%;
+  max-width: 1100px;
+  text-align: right;
+  margin-bottom: 15px;
+}
+
+.volver-btn {
+  display: inline-block;
+  text-decoration: none;
+  color: #006064;
+  font-weight: 700;
+  background: #e0f7fa;
+  padding: 7px 14px;
+  border-radius: 10px;
+  transition: all 0.25s ease;
+}
+
+.volver-btn:hover {
+  background: #b2ebf2;
+  transform: translateY(-2px);
+}
+
+/* TARJETAS */
+.lotes-cards-container {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(260px, 1fr)); /* TARJETAS MÁS CUADRADAS */
+  gap: 20px;
+  width: 100%;
+  max-width: 1100px; /* antes 1400px */
+}
+
+.card-lote {
+  background: #ffffff;
+  padding: 16px;
+  border-radius: 18px;
+  border: 2px solid #78cdd3; /* borde más fino */
+  box-shadow: 0 6px 14px rgba(0,0,0,0.08);
+  transition: transform 0.2s ease;
+  text-align: center;
+  height: 300 px; /* TARJETAS MÁS PEQUEÑAS */
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between; /* separa contenido & botón */
+}
+
+.card-lote:hover {
+  transform: translateY(-5px);
+}
+
+.card-lote h2 {
+  color: #0097a7;
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 4px;
+}
+
+.subtitle {
+  color: #005f66;
+  font-size: 12px;
+  margin-bottom: 8px;
+}
+
+.card-lote p {
+  color: #004c50;
+  font-weight: 600;
+  margin-bottom: 4px;
+  font-size: 13px;
+}
+
+/* HISTORIAL */
+.historial-lista {
+  margin-top: 6px;
+  max-height: none; /* más pequeño */
+  overflow-y: auto;
+}
+
+.sin-datos {
+  color: #555;
+  font-style: italic;
+  font-size: 13px;
+}
+
+/* BOTÓN EXPORTAR PDF — más pequeño y sin salirse */
+.btn-exportar {
+  width: 65%;
+  margin: 8px auto 0 auto;
+  background: #0097a7;
+  color: white;
+  padding: 8px; /* más compacto */
+  border-radius: 10px;
+  font-size: 13px;
+  font-weight: 600;
+  cursor: pointer;
+  border: none;
+  transition: background 0.25s ease, transform 0.25s ease;
+}
+
+.btn-exportar:hover {
+  background: #007c8a;
+  transform: translateY(-2px);
+}
+
+/* RESPONSIVE */
+@media (max-width: 900px) {
+  .lotes-cards-container {
+    grid-template-columns: 1fr;
+  }
+}

@@ -1,0 +1,56 @@
+<div class="card" [class.crear]="form.value.id === 0 || !form.value.id">
+
+  <h1>
+    {{ form.value.id && !isCreateMode ? (isViewMode ? 'Ver Muestreo' : 'Editar Muestreo') : 'Nuevo Muestreo' }}
+  </h1>
+
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+
+    <div class="form-field field-outlined">
+      <label>Fecha</label>
+      <input type="date" formControlName="fecha" [readonly]="isViewMode">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Peso Promedio (g)</label>
+      <input type="number" formControlName="peso" step="0.1" [readonly]="isViewMode">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Número de individuos</label>
+      <input type="number" formControlName="individuos" [readonly]="isViewMode" min="1">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Mortalidad (%)</label>
+      <input type="text" formControlName="mortalidad" [readonly]="isViewMode" placeholder="Ej: 2%">
+    </div>
+
+    <!-- ✅ NUEVO SELECT DE LOTE -->
+    <div class="form-field field-outlined">
+      <label>Lote</label>
+
+      <select *ngIf="!isViewMode" formControlName="id_lote">
+        <option value="">-- Seleccionar lote --</option>
+        <option *ngFor="let l of lotes" [value]="l.id">
+          {{ l.lote }} ({{ l.estanque }})
+        </option>
+      </select>
+
+      <input *ngIf="isViewMode" type="text" formControlName="lote" readonly>
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Observaciones</label>
+      <textarea rows="3" formControlName="observaciones" [readonly]="isViewMode"></textarea>
+    </div>
+
+    <div class="buttons">
+      <button type="button" class="btn-cancel" (click)="cancelar()">
+        {{ isViewMode ? 'Cerrar' : 'Cancelar' }}
+      </button>
+      <button *ngIf="!isViewMode" type="submit" class="btn-save">Guardar</button>
+    </div>
+
+  </form>
+</div>

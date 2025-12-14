@@ -1,0 +1,125 @@
+.mat-mdc-dialog-container .mdc-dialog__surface {
+  padding: 0 !important;
+}
+
+.mdc-dialog__actions {
+  padding: 0 !important;
+  display: flex !important;
+  justify-content: flex-end !important;
+}
+
+* {
+  font-family: "Helvetica Neue", sans-serif;
+}
+.material-icons {
+  font-family: 'Material Icons' !important;
+}
+
+
+.card {
+  background: #ffffff;
+  padding: 25px;
+  border-radius: 16px;
+  border: 1px solid #d7e6eb;
+  width: 100%;
+  max-width: 500px;
+  box-sizing: border-box;
+  max-height: 80vh;
+  overflow-y: auto;
+}
+
+
+h1 {
+  font-size: 26px;
+  margin: 0 0 20px 0;
+  color: #0097a7;
+  font-weight: 600;
+  text-align: center;
+}
+
+.form-field {
+  position: relative;
+  margin-bottom: 28px;
+}
+
+
+.field-outlined label {
+  position: absolute;
+  top: -10px;
+  left: 18px;
+  background: #ffffff;
+  padding: 0 6px;
+  font-size: 14px;
+  font-weight: 600;
+  color: #0097a7;
+  z-index: 2;
+}
+
+
+.field-outlined input,
+.field-outlined select {
+  width: 100%;
+  padding: 14px;
+  padding-top: 18px;
+  border-radius: 10px;
+  border: 2px solid #0097a7;
+  background: #ffffff;
+  font-size: 15px;
+  outline: none;
+  transition: 0.2s ease;
+}
+
+
+.field-outlined input:focus,
+.field-outlined select:focus {
+  border-color: #007e8a;
+}
+
+
+.buttons {
+  display: flex;
+  justify-content: flex-end;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+.btn-cancel {
+  background: #6c757d;
+  color: white;
+  border: none;
+  padding: 10px 20px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: 600;
+}
+
+.btn-cancel:hover {
+  background: #5a6268;
+}
+
+.btn-save {
+  background: #0097a7;
+  color: white;
+  border: none;
+  padding: 10px 22px;
+  border-radius: 10px;
+  cursor: pointer;
+  font-size: 15px;
+  font-weight: bold;
+}
+
+.btn-save:hover {
+  background: #007c8a;
+}
+
+:host ::ng-deep .dialog-lote .mdc-dialog__surface {
+  width: 500px !important;
+  max-width: 500px !important;
+  border-radius: 20px !important;
+  overflow: hidden !important; 
+}
+
+:host ::ng-deep .dialog-lote {
+  overflow-y: auto !important; 
+}

@@ -24,7 +24,11 @@
       <option *ngFor="let e of estados" [value]="e">{{ e }}</option>
     </select>
 
-    <button class="btn" type="submit">Guardar Lote</button>
+    <!-- Botones correctamente alineados -->
+    <div class="btns">
+      <button type="button" class="btn btn-cancelar">Cancelar</button>
+      <button type="submit" class="btn">Guardar Lote</button>
+    </div>
 
   </form>
 

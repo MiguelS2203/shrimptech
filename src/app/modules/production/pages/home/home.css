@@ -1,41 +1,93 @@
-.container {
-  padding: 20px;
-  min-height: 100vh;
-}
-.title {
-  font-size: 26px;
-  color: #004a8f;
-  margin-bottom: 10px;
-}
-.subtitle {
-  margin-bottom: 20px;
-  color: #666;
+/* Fuente global */
+* {
+  font-family: "Helvetica Neue", sans-serif;
 }
 
+.container { 
+  padding: 20px; 
+  max-width: 1400px;
+  margin: 0 auto;
+  text-align: center;
+}
+
+.title { 
+  font-size: 30px; 
+  color: #006f7a;      /* tono más oscuro del #0097a7 para título */
+  margin-bottom: 10px; 
+  font-weight: 700;    /* títulos más marcados */
+}
+
+.subtitle { 
+  margin-bottom: 25px; 
+  color: #555; 
+  font-size: 16px;
+  font-weight: 400;
+}
+
+/* GRID */
 .grid {
   display: grid;
-  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
-  gap: 20px;
+  grid-template-columns: repeat(3, 330px); 
+  gap: 35px;
+  width: fit-content;      
+  margin: 0 auto;
 }
 
+/* --- TARJETAS --- */
 .quick-card {
+  width: 330px;
   background: white;
-  padding: 20px;
-  border-radius: 15px;
+
+  padding: 35px 25px;
+  border-radius: 20px;
+
+  border: 3px solid transparent;     /* borde invisible como en imagen */
   text-align: center;
-  border: 1px solid #e5eeff;
   cursor: pointer;
-  transition: 0.2s ease;
-  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+
+  transition: all 0.26s ease;
+  box-shadow: 0 6px 16px rgba(0,0,0,0.10);
 }
 
+/* HOVER estilo exacto imagen */
 .quick-card:hover {
-  transform: translateY(-5px);
-  box-shadow: 0 8px 20px rgba(0, 0, 0, 0.12);
+  border-color: #0097a7;     
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px rgba(0,0,0,0.18);
 }
 
+/* Estilo para subtítulo */
+.quick-card p.sub {
+  margin-top: 8px;
+  font-size: 14px;
+  color: #666;
+  font-weight: 400;
+}
+
+/* Icono */
 .icon {
-  font-size: 45px;
+  font-size: 60px;
   display: block;
-  margin-bottom: 10px;
+  margin-bottom: 20px;
+}
+
+/* Título dentro de la tarjeta */
+.quick-card h3 {
+  font-size: 20px;
+  margin: 0;
+  color: #0097a7;     /* color principal */
+  font-weight: 600;
+}
+
+/* RESPONSIVE */
+@media (max-width: 1100px) {
+  .grid {
+    grid-template-columns: repeat(2, 330px);
+  }
+}
+
+@media (max-width: 760px) {
+  .grid {
+    grid-template-columns: 330px;
+  }
 }

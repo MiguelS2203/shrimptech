@@ -1,0 +1,62 @@
+<div class="card">
+
+  <h1>
+    {{ data?.modo === 'ver' ? 'Ver Lote' :
+       data?.modo === 'editar' ? 'Editar Lote' :
+       'Registrar Lote'
+    }}
+  </h1>
+
+  <form [formGroup]="form" (ngSubmit)="guardar()">
+
+    <div class="form-field field-outlined">
+      <label>Código del Lote</label>
+      <input formControlName="lote" type="text">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Fecha de Siembra</label>
+      <input formControlName="fecha" type="date">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Especie</label>
+      <input formControlName="especie" type="text">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Tipo de Camarón</label>
+      <select formControlName="tipo">
+        <option value="Todos">Todos</option>
+        <option value="Larva">Larva</option>
+        <option value="Juvenil">Juvenil</option>
+        <option value="Adulto">Adulto</option>
+      </select>
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Cantidad de Postlarvas</label>
+      <input formControlName="cantidad" type="number">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Estanque</label>
+      <input formControlName="estanque" type="text">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Estado</label>
+      <select formControlName="estado">
+        <option value="Activo">Activo</option>
+        <option value="En cosecha">En cosecha</option>
+        <option value="Cerrado">Cerrado</option>
+      </select>
+    </div>
+
+    <div class="buttons">
+      <button type="button" class="btn-cancel" (click)="cancelar()">Cancelar</button>
+      <button type="submit" class="btn-save" *ngIf="data?.modo !== 'ver'">Guardar</button>
+    </div>
+
+  </form>
+</div>

@@ -1,26 +1,70 @@
-<div class="card">
+<div class="page-container">
 
-  <div class="header">
-    <h1>Muestreos</h1>
-    <button class="btn" routerLink="/production/muestreos/nuevo">+ Nuevo Muestreo</button>
+  <!-- TÍTULO -->
+  <div class="titulo-banner">
+    <h2>📋 Gestión de Muestreos</h2>
   </div>
 
-  <table class="table">
+  <!-- BOTÓN AGREGAR -->
+  <div class="btn-box">
+    <button class="btn-agregar" (click)="abrirNuevo()">
+      <span class="material-icons">add</span> Nuevo Muestreo
+    </button>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="filtros-row">
+
+    <!-- FILTRO LOTE -->
+    <fieldset class="filtro-fieldset">
+      <legend>Lote</legend>
+      <input class="filtro-select" type="text" placeholder="Código de lote"
+             [(ngModel)]="filtroLote">
+    </fieldset>
+
+    <!-- FILTRO FECHA -->
+    <fieldset class="filtro-fieldset">
+      <legend>Fecha</legend>
+      <input class="filtro-select" type="date" [(ngModel)]="filtroFecha">
+    </fieldset>
+
+    <!-- FILTRO INDIVIDUOS -->
+    <fieldset class="filtro-fieldset">
+      <legend>Individuos</legend>
+      <input class="filtro-select" type="number" placeholder="N° individuos"
+             [(ngModel)]="filtroIndividuos">
+    </fieldset>
+
+  </div>
+
+  <!-- TABLA -->
+  <table class="tabla">
     <thead>
       <tr>
         <th>Fecha</th>
-        <th>Peso Promedio (g)</th>
+        <th>Peso (g)</th>
         <th>Individuos</th>
         <th>Mortalidad</th>
+        <th>Observaciones</th>
+        <th>Lote</th>
+        <th>Acciones</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr *ngFor="let m of muestreos">
+      <tr *ngFor="let m of filtrados">
         <td>{{ m.fecha }}</td>
         <td>{{ m.peso }}</td>
         <td>{{ m.individuos }}</td>
         <td>{{ m.mortalidad }}</td>
+        <td>{{ m.observaciones }}</td>
+        <td>{{ m.lote }}</td>
+
+        <td class="acciones">
+          <span class="material-icons ver" (click)="ver(m)">visibility</span>
+          <span class="material-icons editar" (click)="editar(m)">edit</span>
+          <span class="material-icons eliminar" (click)="eliminar(m.id)">delete</span>
+        </td>
       </tr>
     </tbody>
   </table>

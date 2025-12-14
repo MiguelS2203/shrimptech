@@ -1,32 +1,110 @@
 <div class="dashboard">
-  <h1>Dashboard de Producción</h1>
 
-  <div class="cards-container">
-    <div class="card">
-      <h2>Lotes</h2>
-      <p>Total: {{ lotes.length }}</p>
-      <ul>
-        <li *ngFor="let l of lotes">{{ l.nombre }} - {{ l.cantidad }} individuos</li>
-      </ul>
-      <button class="btn" routerLink="/production/lotes">Ver Lotes</button>
+  <div class="titulo-banner">
+    <h2>📊 Dashboard de Producción</h2>
+  </div>
+
+  <!-- ✅ BOTÓN CORRECTO PARA EXPORTAR -->
+  <button class="btn" style="margin: 15px;" (click)="exportarDashboardPDF()">
+    Exportar Informe Completo
+  </button>
+
+  <div class="dashboard-layout detalle-dashboard" #detalleDashboard>
+
+    <!-- BARRA LATERAL -->
+    <div class="graficos-lateral">
+      <h2 class="graficos-titulo">📈 Análisis Visual</h2>
+
+      <div class="grafico-box">
+        <h3>Crecimiento por Muestreos</h3>
+        <canvas id="graficoCrecimiento" height="160"></canvas>
+      </div>
+
+      <div class="grafico-box">
+        <h3>Supervivencia (%)</h3>
+        <canvas id="graficoSupervivencia" height="160"></canvas>
+      </div>
     </div>
 
-    <div class="card">
-      <h2>Muestreos</h2>
-      <p>Total: {{ muestreos.length }}</p>
-      <ul>
-        <li *ngFor="let m of muestreos">{{ m.fecha }} - Peso: {{ m.peso }} g</li>
-      </ul>
-      <button class="btn" routerLink="/production/muestreos">Ver Muestreos</button>
-    </div>
+    <!-- ZONA DERECHA -->
+    <div class="contenido-derecho">
 
-    <div class="card">
-      <h2>Cosechas</h2>
-      <p>Total: {{ cosechas.length }}</p>
-      <ul>
-        <li *ngFor="let c of cosechas">{{ c.fecha }} - {{ c.cantidadKg }} Kg</li>
-      </ul>
-      <button class="btn" routerLink="/production/cosecha">Ver Cosechas</button>
+      <!-- INDICADORES -->
+      <div class="indicadores-container">
+
+        <div class="indicador">
+          <h2>Densidad Inicial</h2>
+          <div class="subtitle">Camarones / m²</div>
+          <p>{{ densidadInicial }}</p>
+        </div>
+
+        <div class="indicador">
+          <h2>Supervivencia</h2>
+          <div class="subtitle">Tasa promedio %</div>
+          <p>{{ tasaSupervivencia }}%</p>
+        </div>
+
+        <div class="indicador">
+          <h2>Rendimiento</h2>
+          <div class="subtitle">Promedio Kg</div>
+          <p>{{ rendimientoPromedio }}</p>
+        </div>
+
+      </div>
+
+      <!-- TARJETAS -->
+      <div class="cards-container">
+
+        <div class="card">
+          <h2>Lotes</h2>
+          <div class="subtitle">Control y estado de los lotes activos</div>
+          <p>Total: {{ lotes.length }}</p>
+          <ul>
+            <li *ngFor="let l of lotes | slice:0:5">
+              {{ l.lote }} - {{ l.cantidad }} individuos
+            </li>
+          </ul>
+          <button class="btn" routerLink="/production/lotes">Ver Lotes</button>
+        </div>
+
+        <div class="card">
+          <h2>Muestreos</h2>
+          <div class="subtitle">Registros de peso y análisis</div>
+          <p>Total: {{ muestreos.length }}</p>
+          <ul>
+            <li *ngFor="let m of muestreos">
+              {{ m.fecha }} - Peso: {{ m.peso }} g
+            </li>
+          </ul>
+          <button class="btn" routerLink="/production/muestreos">Ver Muestreos</button>
+        </div>
+
+        <div class="card">
+          <h2>Cosechas</h2>
+          <div class="subtitle">Historial de producción</div>
+          <p>Total: {{ cosechas.length }}</p>
+          <ul>
+            <li *ngFor="let c of cosechas">
+              {{ c.fecha }} - {{ c.cantidadKg }} Kg
+            </li>
+          </ul>
+          <button class="btn" routerLink="/production/cosecha">Ver Cosechas</button>
+        </div>
+
+        <div class="card">
+          <h2>Eventos</h2>
+          <div class="subtitle">Sucesos registrados</div>
+          <p>Total: {{ eventos.length }}</p>
+          <ul>
+            <li *ngFor="let e of eventos">
+              {{ e.fecha }} - {{ e.tipo }}
+            </li>
+          </ul>
+          <button class="btn" routerLink="/production/eventos">Ver Eventos</button>
+        </div>
+
+      </div>
+
     </div>
   </div>
 </div>

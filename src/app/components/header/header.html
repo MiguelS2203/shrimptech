@@ -1,26 +1,32 @@
 <header class="site-header">
-  <div class="brand">
-    <h3>ShrimpTech</h3>
+  <div class="left-group">
+    <div class="brand">
+      <h3>ShrimpTech</h3>
+    </div>
+
+    @if (loggedInHeader) {
+    <div class="user-center">
+      <span class="user-name">
+        {{ authorize.currentUser$ | async }}
+      </span>
+    </div>
+    }
   </div>
 
-  @if(loggedInHeader){
-  <div class="user-center">
-    <span class="user-name">{{ authorize.currentUser$ | async }}</span>
-  </div>
-  }
+  <button class="menu-toggle" (click)="toggleMenu()">☰</button>
 
-  <nav class="header-nav">
-    <a routerLink="/">Inicio</a>
+  <nav class="header-nav" [class.open]="menuOpen">
+    <a routerLink="/" (click)="closeMenu()">Inicio</a>
 
-    @if(loggedInHeader){
-    <a routerLink="/principal-dashboard">Dashboard</a>
+    @if (loggedInHeader) {
+    <a routerLink="/principal-dashboard" (click)="closeMenu()">Dashboard</a>
     }
 
-    <a routerLink="/about">Acerca de</a>
+    <a routerLink="/about" (click)="closeMenu()">Acerca de</a>
 
-    @if(!loggedInHeader){
-    <a routerLink="/login">Iniciar sesión</a>
-    } @if(loggedInHeader){
+    @if (!loggedInHeader) {
+    <a routerLink="/login" (click)="closeMenu()">Iniciar sesión</a>
+    } @if (loggedInHeader) {
     <a class="logout-btn" (click)="logout()">Cerrar sesión</a>
     }
   </nav>

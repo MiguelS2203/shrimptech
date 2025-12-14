@@ -1,43 +1,79 @@
-<div class="card">
+<div class="page-container">
 
-  <div class="header">
-    <h1>Lotes de Producción</h1>
-    <button class="btn" routerLink="/production/lotes/nuevo">+ Nuevo Lote</button>
+  <div class="titulo-banner">
+    <h2>📦 Gestión de Lotes</h2>
   </div>
 
-  <table class="table">
+
+  <div class="btn-box">
+    <button class="btn-agregar" (click)="abrirNuevo()">
+      <span class="material-icons">add</span> Agregar Lote
+    </button>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="filtros-row">
+
+    <!-- FILTRO LOTE -->
+    <fieldset class="filtro-fieldset">
+      <legend>Lote</legend>
+      <select class="filtro-select" [(ngModel)]="filtroLote">
+        <option [ngValue]="''">Todos</option>
+        <option *ngFor="let l of lotes" [ngValue]="l.id">{{ l.lote }}</option>
+      </select>
+    </fieldset>
+
+    <!-- FILTRO TIPO DE CAMARÓN -->
+    <fieldset class="filtro-fieldset">
+      <legend>Tipo de Camarón</legend>
+      <select class="filtro-select" [(ngModel)]="filtroEstado">
+        <option [ngValue]="''">Todos</option>
+        <option value="Activo">Activo</option>
+        <option value="En cosecha">En cosecha</option>
+        <option value="Cerrado">Cerrado</option>
+      </select>
+    </fieldset>
+
+    <!-- FILTRO ESTANQUE -->
+    <fieldset class="filtro-fieldset">
+      <legend>Estanque</legend>
+      <select class="filtro-select" [(ngModel)]="filtroEstanque">
+        <option [ngValue]="''">Todos</option>
+        <option *ngFor="let l of lotes" [ngValue]="l.estanque">{{ l.estanque }}</option>
+      </select>
+    </fieldset>
+
+  </div>
+
+  <!-- TABLA -->
+  <table class="tabla">
     <thead>
       <tr>
-        <th>Código</th>
-        <th>Fecha de Siembra</th>
+        <th>ID</th>
+        <th>Lote</th>
         <th>Especie</th>
         <th>Cantidad</th>
         <th>Estanque</th>
         <th>Estado</th>
+        <th>Acciones</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr *ngFor="let l of lotes">
-        <td>{{ l.codigo }}</td>
-        <td>{{ l.fecha }}</td>
+      <tr *ngFor="let l of filtrados">
+        <td>{{ l.id }}</td>
+        <td>{{ l.lote }}</td>
         <td>{{ l.especie }}</td>
-        <td>{{ l.cantidad | number }}</td>
+        <td>{{ l.cantidad }}</td>
         <td>{{ l.estanque }}</td>
+        <td>{{ l.estado }}</td>
+        <td class="acciones">
+          <span class="material-icons ver" (click)="ver(l)">visibility</span>
+          <span class="material-icons editar" (click)="editar(l)">edit</span>
+          <span class="material-icons eliminar" (click)="eliminar(l.id)">delete</span>
 
-        <td>
-          <span
-            class="estado"
-            [ngClass]="{
-              'activo': l.estado === 'Activo',
-              'cosecha': l.estado === 'En cosecha',
-              'cerrado': l.estado === 'Cerrado'
-            }"
-          >
-            {{ l.estado }}
-          </span>
+          <span class="material-icons detalle-completo" (click)="verDetalleCompleto(l.id)">article</span>
         </td>
-
       </tr>
     </tbody>
   </table>

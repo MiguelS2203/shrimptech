@@ -1,72 +1,156 @@
-.card {
-  background: white;
-  padding: 25px;
-  border-radius: 14px;
-  box-shadow: 0 5px 18px rgba(0, 0, 0, 0.08);
-  border: 1px solid #e6eefc;
-  height: 100vh;
+* {
+  font-family: "Helvetica Neue", sans-serif;
+}
+.material-icons {
+  font-family: 'Material Icons' !important;
 }
 
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  margin-bottom: 18px;
+.page-container {
+  width: 90%;
+  margin: auto;
+  padding-top: 20px;
 }
 
-h1 {
-  font-size: 24px;
-  color: #004a8f;
-}
-
-.btn {
-  background: #0077e6;
+.titulo-banner {
+  width: 90%;
+  margin: 0 auto 30px auto;
+  background: #0097a7;
   color: white;
-  padding: 10px 18px;
-  border-radius: 10px;
-  border: none;
-  cursor: pointer;
-  transition: 0.2s;
+  padding: 35px 25px;
+  border-radius: 14px;
+  text-align: center;
 }
 
-.btn:hover {
-  background: #005bb8;
+.titulo-banner h2 {
+  margin: 0;
+  font-size: 32px;
+  font-weight: 600;
 }
 
-.table {
+.filtros-row {
   width: 100%;
+  margin: 0 auto 25px auto;
+  display: flex;
+  gap: 25px;
+}
+
+.filtro-fieldset {
+  flex: 1;
+  border: 2px solid #bfbfbf;
+  border-radius: 10px;
+  padding: 10px 14px 6px 14px;
+  position: relative;
+  min-height: 65px;
+}
+
+.filtro-fieldset legend {
+  font-size: 14px;
+  color: #616161;
+  padding: 0 8px;
+  margin-left: 10px;
+}
+
+.filtro-select {
+  width: 100%;
+  border: none;
+  outline: none;
+  font-size: 15px;
+  margin-top: 8px;
+  appearance: none;
+  background-color: transparent;
+  background-image: url("data:image/svg+xml;utf8,<svg fill='gray' height='20' width='20' viewBox='0 0 20 20' xmlns='http://www.w3.org/2000/svg'><polygon points='0,0 20,0 10,10'/></svg>");
+  background-repeat: no-repeat;
+  background-position: right 8px center;
+  padding-right: 30px;
+}
+
+.btn-box {
+  width: 100%;
+  margin: 0 auto 30px auto;
+  display: flex;
+  justify-content: flex-end;
+  align-items: center;
+}
+
+.btn-agregar {
+  background: #0097a7;
+  color: white;
+  border: none;
+  padding: 12px 22px;
+  border-radius: 8px;
+  font-weight: bold;
+  cursor: pointer;
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-size: 16px;
+}
+
+.btn-agregar .material-icons {
+  color: white;
+  font-size: 20px;
+}
+
+.btn-agregar:hover {
+  background: #007c8a;
+}
+
+.tabla {
+  width: 100%;
+  margin: auto;
   border-collapse: collapse;
 }
 
-.table th {
-  background: #f0f6ff;
-  padding: 10px;
-  text-align: left;
-  border-bottom: 2px solid #dce7ff;
-}
-
-.table td {
-  padding: 10px;
-  border-bottom: 1px solid #eef3ff;
-}
-
-/* Estilos para los estados */
-.estado {
-  padding: 4px 10px;
-  border-radius: 12px;
-  font-weight: 600;
+.tabla th {
+  background: #0097a7;
   color: white;
-  font-size: 13px;
+  padding: 18px;
+  text-align: left;
+  font-size: 16px;
 }
 
-.activo {
-  background: #28a745;
+.tabla td {
+  padding: 16px;
+  border-bottom: 1px solid #e2e2e2;
+  font-size: 15px;
 }
 
-.cosecha {
-  background: #ff9800;
+.acciones {
+  display: flex;
+  gap: 14px;
+  align-items: center;
 }
 
-.cerrado {
-  background: #dc3545;
+.acciones .material-icons {
+  cursor: pointer;
+  font-size: 22px;
+  color: #0097a7 !important;  
+  transition: transform 0.2s;
+}
+
+.acciones .material-icons:hover {
+  transform: scale(1.15);
+}
+.material-icons {
+  font-family: 'Material Icons' !important;
+  font-weight: normal;
+  font-style: normal;
+  font-size: 24px;
+  line-height: 1;
+  letter-spacing: normal;
+  text-transform: none;
+  display: inline-block;
+  white-space: nowrap;
+  word-wrap: normal;
+  direction: ltr;
+}
+.detalle-completo {
+  cursor: pointer;
+  font-size: 22px;
+  color: #006064;
+  transition: transform 0.2s;
+}
+
+.detalle-completo:hover {
+  transform: scale(1.15);
 }

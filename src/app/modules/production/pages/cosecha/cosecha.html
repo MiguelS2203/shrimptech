@@ -1,30 +1,76 @@
-<div class="card">
+<div class="page-container">
 
-  <div class="header">
-    <h1>Cosechas</h1>
-    <button class="btn" routerLink="/production/cosecha/nuevo">+ Nueva Cosecha</button>
+  <!-- TÍTULO -->
+  <div class="titulo-banner">
+    <h2>📦 Gestión de Cosechas</h2>
   </div>
 
-  <table class="table">
+  <!-- BOTÓN AGREGAR -->
+  <div class="btn-box">
+    <button class="btn-agregar" (click)="abrirNuevo()">
+      <span class="material-icons">add</span> Nueva Cosecha
+    </button>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="filtros-row">
+
+    <!-- FILTRO FECHA -->
+    <fieldset class="filtro-fieldset">
+      <legend>Fecha</legend>
+      <input class="filtro-select" type="date" [(ngModel)]="filtroFecha">
+    </fieldset>
+
+    <!-- FILTRO LOTE -->
+    <fieldset class="filtro-fieldset">
+      <legend>Lote</legend>
+      <input class="filtro-select" type="text" placeholder="Código de lote"
+             [(ngModel)]="filtroLote">
+    </fieldset>
+
+    <!-- FILTRO TEMPERATURA -->
+    <fieldset class="filtro-fieldset">
+      <legend>Temperatura (°C)</legend>
+      <input class="filtro-select" type="number" placeholder="Ej: 28"
+             [(ngModel)]="filtroTemperatura">
+    </fieldset>
+
+  </div>
+
+  <!-- TABLA -->
+  <table class="tabla">
     <thead>
       <tr>
         <th>Fecha</th>
         <th>Lote</th>
         <th>Cantidad (Kg)</th>
+        <th>Sobrevivencia (%)</th>
+        <th>Peso Promedio (g)</th>
+        <th>Temperatura (°C)</th>
         <th>Observaciones</th>
         <th>Acciones</th>
       </tr>
     </thead>
+
     <tbody>
-      <tr *ngFor="let c of cosechas">
+      <tr *ngFor="let c of filtradas">
         <td>{{ c.fecha }}</td>
         <td>{{ c.lote }}</td>
         <td>{{ c.cantidadKg }}</td>
+        <td>{{ c.sobrevivencia }}</td>
+        <td>{{ c.pesoPromedio }}</td>
+        <td>{{ c.temperatura }}</td>
         <td>{{ c.observaciones }}</td>
-        <td>
-          <button class="btn-edit">✏️</button>
-          <button class="btn-delete">🗑️</button>
+
+        <td class="acciones">
+          <span class="material-icons ver" (click)="ver(c)" title="Ver">visibility</span>
+          <span class="material-icons editar" (click)="editar(c)" title="Editar">edit</span>
+          <span class="material-icons eliminar" (click)="eliminar(c.id)" title="Eliminar">delete</span>
         </td>
+      </tr>
+
+      <tr *ngIf="(filtradas || []).length === 0">
+        <td colspan="8" class="sin-datos">No hay cosechas que coincidan</td>
       </tr>
     </tbody>
   </table>

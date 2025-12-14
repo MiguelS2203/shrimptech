@@ -1,0 +1,60 @@
+<div class="card" [class.crear]="data?.id === 0 || !data?.id">
+
+  <h1>
+    {{ data?.viewMode ? 'Ver Cosecha' : (data?.id ? 'Editar Cosecha' : 'Nueva Cosecha') }}
+  </h1>
+
+  <form #f="ngForm" (ngSubmit)="guardar()">
+
+    <div class="form-field field-outlined">
+      <label>Fecha de Cosecha</label>
+      <input name="fecha" type="date" [(ngModel)]="data.fecha" required [readonly]="data?.viewMode">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Lote</label>
+      <input name="lote" type="text" [(ngModel)]="data.lote" required [readonly]="data?.viewMode">
+    </div>
+
+    <!-- 🔹 NUEVO: rendimiento calculado -->
+    <div class="form-field field-outlined">
+      <label>Cantidad Cosechada (Kg)</label>
+      <input name="cantidadKg" type="number" [(ngModel)]="data.cantidadKg" step="0.1" min="0" required [readonly]="data?.viewMode">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Rendimiento (Kg/m²)</label>
+      <input type="number" [value]="calcularRendimiento()" readonly>
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Sobrevivencia (%)</label>
+      <input name="sobrevivencia" type="number" [(ngModel)]="data.sobrevivencia" step="0.1" min="0" max="100" required [readonly]="data?.viewMode">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Peso Promedio (g)</label>
+      <input name="pesoPromedio" type="number" [(ngModel)]="data.pesoPromedio" step="0.1" min="0" required [readonly]="data?.viewMode">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Temperatura (°C)</label>
+      <input name="temperatura" type="number" [(ngModel)]="data.temperatura" step="0.1" min="0" [readonly]="data?.viewMode">
+    </div>
+
+    <div class="form-field field-outlined">
+      <label>Observaciones</label>
+      <textarea name="observaciones" rows="3" [(ngModel)]="data.observaciones" [readonly]="data?.viewMode"></textarea>
+    </div>
+
+    <div class="buttons">
+      <button type="button" class="btn-cancel" (click)="cerrar()">
+        {{ data?.viewMode ? 'Cerrar' : 'Cancelar' }}
+      </button>
+      <button *ngIf="!data?.viewMode" type="submit" class="btn-save" [disabled]="f.invalid">
+        Guardar
+      </button>
+    </div>
+
+  </form>
+</div>

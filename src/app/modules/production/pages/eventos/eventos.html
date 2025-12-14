@@ -1,37 +1,83 @@
-<div class="card">
-  
-  <div class="header">
-    <h1>Eventos Productivos</h1>
-    <button class="btn" routerLink="/production/eventos/nuevo">+ Nuevo Evento</button>
+<div class="page-container">
 
+  <!-- TÍTULO -->
+  <div class="titulo-banner">
+    <h2>📋 Gestión de Eventos</h2>
+  </div>
+
+  <!-- BOTÓN AGREGAR -->
+  <div class="btn-box">
+    <button class="btn-agregar" (click)="abrirNuevo()">
+      <span class="material-icons">add</span> Nuevo Evento
+    </button>
+  </div>
+
+  <!-- FILTROS -->
+  <div class="filtros-row">
+
+    <!-- FILTRO TIPO -->
+    <fieldset class="filtro-fieldset">
+      <legend>Tipo</legend>
+      <select class="filtro-select" [(ngModel)]="filtroTipo">
+        <option [ngValue]="''">Todos</option>
+        <option>Alimentación</option>
+        <option>Muestreo</option>
+        <option>Fertilización</option>
+        <option>Limpieza</option>
+        <option>Medicamento</option>
+      </select>
+    </fieldset>
+
+    <!-- FILTRO FECHA -->
+    <fieldset class="filtro-fieldset">
+      <legend>Fecha</legend>
+      <input class="filtro-select" type="date" [(ngModel)]="filtroFecha">
+    </fieldset>
+
+    <!-- FILTRO ESTADO -->
+    <fieldset class="filtro-fieldset">
+      <legend>Estado</legend>
+      <select class="filtro-select" [(ngModel)]="filtroEstado">
+        <option [ngValue]="''">Todos</option>
+        <option>Activo</option>
+        <option>Programado</option>
+        <option>Cerrado</option>
+        <option>Incidencia</option>
+      </select>
+    </fieldset>
 
   </div>
 
-  <table class="table">
+  <!-- TABLA -->
+  <table class="tabla">
     <thead>
       <tr>
         <th>Fecha</th>
+        <th>Hora</th>
+        <th>Lote</th>
+        <th>Responsable</th>
         <th>Tipo</th>
-        <th>Nota</th>
+        <th>Estado</th>
+        <th>Descripción</th>
+        <th>Acciones</th>
       </tr>
     </thead>
 
     <tbody>
-      <tr *ngFor="let e of eventos">
+      <tr *ngFor="let e of filtrados">
         <td>{{ e.fecha }}</td>
+        <td>{{ e.hora }}</td>
+        <td>{{ e.lote }}</td>
+        <td>{{ e.responsable }}</td>
+        <td>{{ e.tipo }}</td>
+        <td>{{ e.estado }}</td>
+        <td>{{ e.descripcion }}</td>
 
-        <td>
-          <span class="tipo"
-            [ngClass]="{
-              'alimentacion': e.tipo === 'Alimentación',
-              'tratamiento': e.tipo === 'Tratamiento',
-              'incidencia': e.tipo === 'Incidencia'
-            }">
-            {{ e.tipo }}
-          </span>
+        <td class="acciones">
+          <span class="material-icons ver" (click)="ver(e)">visibility</span>
+          <span class="material-icons editar" (click)="editar(e)">edit</span>
+          <span class="material-icons eliminar" (click)="eliminar(e.id)">delete</span>
         </td>
-
-        <td>{{ e.nota }}</td>
       </tr>
     </tbody>
   </table>

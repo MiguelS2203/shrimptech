@@ -15,11 +15,19 @@ export class Header {
   readonly authorize = inject(Authorization);
 
   loggedInHeader = false;
+  menuOpen = false;
 
-  // Se actualiza automáticamente cuando cambie el login:
   readonly sub = this.authorize.loggedIn$.subscribe((val) => {
     this.loggedInHeader = val;
   });
+
+  toggleMenu() {
+    this.menuOpen = !this.menuOpen;
+  }
+
+  closeMenu() {
+    this.menuOpen = false;
+  }
 
   logout() {
     const confirmed = confirm('¿Estás seguro de que quieres cerrar sesión?');
@@ -27,6 +35,7 @@ export class Header {
     if (confirmed) {
       this.authorize.logout();
       this.router.navigate(['/login']);
+      this.closeMenu();
     }
   }
 }
